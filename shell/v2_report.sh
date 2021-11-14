@@ -126,6 +126,12 @@ main(){
 	version=v0.0.1
 	update=2021-11-01
 	trap "rm -rf *.cookie *status*; exit" EXIT INT
+	if  [[ $(whereis "jq") == "jq:" ]]; then
+            echo "jq is not installed,plaese run it after installation"
+	    exit 1
+	else
+            echo "jq is  installed"
+	fi
 	case $1 in
 		(-o|--online)
 			read_config
