@@ -1,5 +1,6 @@
 <?php
 $name="网站名";
+$lang="chinese"; //cinese,english,jpanese,vietnamese
 $hostname="你的网站域名，不带https://，末尾不要/,示例：baidu.com";
 $chat_id="聊天id";
 $token="从BotFather哪里获取的机器人token";
