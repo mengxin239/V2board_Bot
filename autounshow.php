@@ -8,7 +8,7 @@ for($i=0;$i<count($json['data']);$i++){
         if($json['data'][$i]['parent_id']==null){
             if($json['data'][$i]['online']==null){
 		    if($json['data'][$i]['availale_status']==null){
-                exec('curl -s https://apcloud.tk/api/v1/admin/server/v2ray/update -b logined.cookie -X POST \'id='.$json['data'][$i]['id'].'&show=0\'')
+                exec('curl -s https://apcloud.tk/api/v1/admin/server/v2ray/update -b logined.cookie -X POST -d \'id='.$json['data'][$i]['id'].'&show=0\'')
 			    } else {
 		   	 $text.="\n".$json['data'][$i]['name']." ".$onlinetext.":0";
 		    }
@@ -19,7 +19,7 @@ for($i=0;$i<count($json['data']);$i++){
 		
             if($json['data'][$json['data'][$i]['parent_id']]['online']==null){
 		    if($json['data'][$i]['availale_status']==null){
-                exec('curl -s https://apcloud.tk/api/v1/admin/server/v2ray/update -b logined.cookie -X POST \'id='.$json['data'][$i]['id'].'&show=0\'')
+                exec('curl -s https://apcloud.tk/api/v1/admin/server/v2ray/update -b logined.cookie -X POST -d \'id='.$json['data'][$i]['id'].'&show=0\'')
 			    } else {
 		   	 $text.="\n".$json['data'][$i]['name']." ".$onlinetext.":0";
 		    }
