@@ -9,9 +9,8 @@ print_usage(){
 	Options:
 		-o, --online		get online status
 		-t, --traffic		get traffic status
-		-h, --help		print script help
+		-h, --help			print script help
 		-v, --version 		print script version
-
 	Example:
 		cp config.ini.example  config.ini
 		vim config.ini
@@ -51,7 +50,7 @@ check_login(){
 	local url=${v2_website}/api/v1/passport/auth/login
 	curl -s -i -X POST $url -d "email=${v2_user}" -d "password=${v2_pass}" -c $cookie | head -1 | grep -q OK
 	if [ $? -ne 0 ]; then
-		error_msg "Login failure! Please check $config"
+		error_msg "Login failure! Please check config!"
 	else
 		info_msg "Login success!"
 	fi
@@ -123,14 +122,37 @@ send_telegram(){
 }
 
 main(){
-	version=v0.0.1
-	update=2021-11-01
+	version=v0.0.2
+	update=2022-2-2
 	trap "rm -rf *.cookie *status*; exit" EXIT INT
 	if  [[ $(whereis "jq") == "jq:" ]]; then
-            echo "jq is not installed,plaese run it after installation"
-	    exit 1
+            echo "jq					[Faild]"
+			if [[ -f /etc/redhat-release ]]; then
+			  release="centos"
+			 elif cat /etc/issue | grep -q -E -i "debian"; then
+			  release="debian"
+			 elif cat /etc/issue | grep -q -E -i "ubuntu"; then
+			  release="ubuntu"
+			 elif cat /etc/issue | grep -q -E -i "centos|red hat|redhat"; then
+			  release="centos"
+			 elif cat /proc/version | grep -q -E -i "debian"; then
+			  release="debian"
+			 elif cat /proc/version | grep -q -E -i "ubuntu"; then
+			  release="ubuntu"
+			 elif cat /proc/version | grep -q -E -i "centos|red hat|redhat"; then
+			  release="centos"
+			    fi
+			if [ $release == "centos"] then
+			  yum update -y
+			  yum install -y jq
+			 elif [ $release == "ubuntu" | $release == "debian"] then
+			  apt-get update -y
+			  apt-get install -y jq
+			 elif [$release == "red hat"] then
+			  echo "plese install jq"
+				fi
 	else
-            echo "jq is  installed"
+            echo "jq					[OK]"
 	fi
 	case $1 in
 		(-o|--online)

@@ -1,10 +1,17 @@
-<?php
-$name="网站名";
-$lang="chinese"; //cinese,english,jpanese,vietnamese
-$hostname="你的网站域名，不带https://，末尾不要/,示例：baidu.com";
+﻿<?php
+$name="站点名字";
+$botlang="chinese"; //cinese,english,jpanese,vietnamese
+$hostname="moons.team";
 $chat_id="聊天id";
 $token="从BotFather哪里获取的机器人token";
-$admin_username="admin@admin.com";
-$admin_password="123456";
-$show_poweredby=true; //这个是显示版权
+$admin_username="后台管理用户名";
+$admin_password="后台管理密码";
+$show_poweredby=true; //显示版权
+$debug=flase; //懂得都懂，不懂别动，调试信息（包含敏感信息）会发送到chat_id对应的群里
+$delay="10"; //节点检测间隔时间，单位为s
+$traffic_send_time="20:00:01"; //格式为H:i:S
+/*
+2022-2-2 Update:
+	$delay不是php main.php all的发送间隔！！！那个是固定为一小时的！！！是php main.php check的发送间隔！！！
+*/
 ?>

@@ -3,7 +3,7 @@ function send($data) {
     global $token;
     $data_string = json_encode($data);
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_URL,"https://api.telegram.org/bot".$token."/sendMessage");
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
